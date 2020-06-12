@@ -1,5 +1,6 @@
 import pygame
 import math
+import random
 from sprites import *
 # from gameinit import *
 
@@ -21,6 +22,9 @@ class MonChase():
         # Game initialization
         caught = 0
         music = 0
+        cycles = 0
+        x_rand_mon = random.randint(-4,4)
+        y_rand_mon = random.randint(-4,4)
 
         # Sound
         win_sound = pygame.mixer.Sound('sounds/win.wav')
@@ -43,6 +47,8 @@ class MonChase():
 
         stop_game = False
         while not stop_game:
+            cycles += 1
+            
             for event in pygame.event.get():
 
                 # Event handling
@@ -78,9 +84,13 @@ class MonChase():
                 if event.type == pygame.QUIT:
                     stop_game = True
 
-
             # Game logic
-            monster.move(2,2)
+
+            if cycles == 60:
+                x_rand_mon = random.randint(-2,2)
+                y_rand_mon = random.randint(-2,2)
+                cycles = 0
+            monster.move(x_rand_mon,y_rand_mon)
             hero.update()
 
             if monster.active == 1:
