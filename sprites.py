@@ -6,6 +6,9 @@ class sprites():
         self.ypos = y_pos
         self.xspd = 0
         self.yspd = 0
+        self.x_center = self.xpos + 16
+        self.y_center = self.ypos + 16
+        self.active = 1
     
     def move(self, x_mov, y_mov):
         if x_mov > 0:
