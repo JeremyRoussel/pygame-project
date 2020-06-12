@@ -18,12 +18,12 @@ class MonChase():
 
     def run(self):
         # Game initialization
-
-        # Sprite loading
-        goblin_sp = pygame.image.load('images/goblin.png').convert_alpha()
-        monster_sp = pygame.image.load('images/monster.png').convert_alpha()
-
-    
+        # 
+        # keys
+        KEY_UP = 273
+        KEY_DOWN = 274
+        KEY_LEFT = 276
+        KEY_RIGHT = 275 
 
         # Objects
 
@@ -41,12 +41,33 @@ class MonChase():
 
                 # Event handling
 
+                if event.type == pygame.KEYDOWN:
+                    if event.key == KEY_DOWN:
+                        hero.yspd += 2
+                    elif event.key == KEY_UP:
+                        hero.yspd += -2
+                    elif event.key == KEY_LEFT:
+                        hero.xspd += -2
+                    elif event.key == KEY_RIGHT:
+                        hero.xspd += 2
+                if event.type == pygame.KEYUP:
+                    if event.key == KEY_DOWN:
+                        hero.yspd += -2
+                    elif event.key == KEY_UP:
+                        hero.yspd += 2
+                    elif event.key == KEY_LEFT:
+                        hero.xspd += 2
+                    elif event.key == KEY_RIGHT:
+                        hero.xspd += -2
+                    
+
                 if event.type == pygame.QUIT:
                     stop_game = True
 
 
             # Game logic
             monster.move(2,2)
+            hero.update()
 
             # Draw background - constant
             
